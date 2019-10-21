@@ -1,0 +1,30 @@
+{
+    "header": {
+        "home": "首页",
+        "informationCenter": "消息中心",
+        "messagemanagement": "留言管理"
+    },
+    "asideMenu": {
+        "information": {
+            "title": "信息管理",
+            "messageOfMe": "我的留言",
+            "informationManagement": "信息管理",
+            "myRumor": "我的畅言"
+        },
+        "userManagement": {
+            "title": "用户管理",
+            "userList": "用户列表"
+        },
+        "informationStatistics": {
+            "title": "信息统计"
+        },
+        "systemSettings": {
+            "title": "系统设置"
+        }
+    },
+    "userinfo": {
+        "userCenter": "用户中心",
+        "setting": "设置",
+        "signOut": "退出登陆"
+    }
+}
