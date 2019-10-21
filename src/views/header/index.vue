@@ -1,9 +1,19 @@
 <template>
     <el-col :span="24" class="header">
-      <el-col :span="4" class="logo" :class="isCollapse?'logo-collapse-width':'logo-width'">
+      <!-- <el-col :span="4" class="logo" :class="this.$store.state.collapse?'menu-bar-collapse-width':'el-col-4'">
         <img :src="this.logo" /><span>{{isCollapse?sysName:sysName}}</span>
-      </el-col>
-      <el-col :span="16">
+      </el-col> -->
+      <div class="logo" :class="this.$store.state.collapse?'el-col-1':'el-col-4'">
+        <img :src="this.logo" /><span>{{this.$store.state.collapse?"":sysName}}</span>
+      </div>
+      <el-col :span="1">
+        <div class="tools" @click.prevent="collapse">
+            <i class="el-icon-menu"></i>
+        </div>
+					<!-- <i class="fa fa-align-justify"></i> -->
+	  </el-col>
+
+      <el-col :span="15">
         <div class="hearNavBar">
           <el-menu
             :default-active="activeIndex"
@@ -43,34 +53,56 @@
 <script>
 import axios from "axios";
 import mock from "@/mock/index.js";
+import store from "@/store/index.js"
 export default {
-  data() {
-    return {
-      name: "",
-      sysName: "",
-      logo: "",
-      userName: "",
-      userAvatar: ""
-    };
-  },
+    data() {
+        return {
+            name: "",
+            sysName: "",
+            logo: "",
+            userName: "",
+            userAvatar: ""
+        };
+    },
 
-  methods: {},
-  mounted() {
-    this.sysName = "Cassie";
-    this.logo = require("@/assets/logo.png");
-    var user = sessionStorage.getItem("user");
-    if (user) {
-      this.userName = user;
-      this.userAvatar = require("@/assets/userInfo.png");
+    methods: {
+        //折叠导航栏
+        collapse: function() {
+            this.$store.commit('collapse')
+            // this.isCollapse = !this.isCollapse;
+        },
+        //退出登录
+        logout: function() {
+        var _this = this;
+        this.$confirm("确认退出吗?", "提示", {
+            type: "warning"
+        })
+            .then(() => {
+            sessionStorage.removeItem("user");
+            this.$router.push("/login");
+            })
+            .catch(() => {});
+        }
+    },
+    mounted() {
+        // this.sysName = this.$store.state.collapse+"1"
+        this.sysName = "Cassie";
+        this.logo = require("@/assets/logo.png");
+        var user = sessionStorage.getItem("user");
+        if (user) {
+            this.userName = user;
+            this.userAvatar = require("@/assets/userInfo.png");
+        }
     }
-  }
+
 };
 </script>
+
 <style lang="scss" scoped>
     img {
-        vertical-align: middle;
-        width: 40px;
-        margin: 12px;
+    vertical-align: middle;
+    width: 40px;
+    margin: 12px;
     }
     .header span{
     color: #fff;
@@ -81,7 +113,18 @@ export default {
     .header{
         height: 61px;
         background-color: rgb(75, 95, 110);
+        .tools {
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            padding-left: 10px;
+            padding-right: 10px;
+            text-align: center;
+            width: 40px;
+            height: 60px;
+            line-height: 60px;
+            cursor: pointer;
         }
+    }
     .logo {
         height: 61px;
         border-right: 1px solid white;
@@ -93,7 +136,7 @@ export default {
         width: 100%;
         height: 100%;
         display: inline-block;
-        float: left;
+        // float: left;
         color: #000;
         }
     }
@@ -104,5 +147,11 @@ export default {
         img{
         border-radius: 10px;
         }
+    }
+    .menu-bar-width {
+    width: 61px;
+    }
+    .menu-bar-collapse-width {
+    width: 30px;
     }
 </style>

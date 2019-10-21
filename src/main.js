@@ -5,6 +5,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
 import api from './http/index'
 import i18n from './i18n/index'
+import store from './store/index'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
@@ -13,6 +14,7 @@ Vue.use(api)
 new Vue({
   el: '#app',
   i18n,
+  store,
   router,
   render: h => h(App)
 })
