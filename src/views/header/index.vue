@@ -3,12 +3,12 @@
       <!-- <el-col :span="4" class="logo" :class="this.$store.state.collapse?'menu-bar-collapse-width':'el-col-4'">
         <img :src="this.logo" /><span>{{isCollapse?sysName:sysName}}</span>
       </el-col> -->
-      <div class="logo" :class="this.$store.state.collapse?'el-col-1':'el-col-4'">
-        <img :src="this.logo" /><span>{{this.$store.state.collapse?"":sysName}}</span>
+      <div class="logo" :class="$store.state.collapse?'el-col-1':'el-col-4'">
+        <img :src="this.logo" /><span>{{$store.state.collapse?"":sysName}}</span>
       </div>
       <el-col :span="1">
         <div class="tools" @click.prevent="collapse">
-            <i class="el-icon-menu"></i>
+            <i :class="$store.state.collapse?'el-icon-s-unfold':'el-icon-menu'"></i>
         </div>
 					<!-- <i class="fa fa-align-justify"></i> -->
 	  </el-col>
@@ -61,7 +61,8 @@ export default {
             sysName: "",
             logo: "",
             userName: "",
-            userAvatar: ""
+            userAvatar: "",
+            isCollapse: false,
         };
     },
 
@@ -69,6 +70,8 @@ export default {
         //折叠导航栏
         collapse: function() {
             this.$store.commit('collapse')
+            // this.$store.state.isCollapse = this.isCollapse;
+            console.log(this.$store.state.collapse)
             // this.isCollapse = !this.isCollapse;
         },
         //退出登录
@@ -83,6 +86,9 @@ export default {
             })
             .catch(() => {});
         }
+    },
+    created: {
+
     },
     mounted() {
         // this.sysName = this.$store.state.collapse+"1"
@@ -111,10 +117,10 @@ export default {
     }
 
     .header{
-        height: 61px;
+        height: 60px;
         background-color: rgb(75, 95, 110);
         .tools {
-            border-bottom: 1px solid #fff;
+            // border-bottom: 1px solid #fff;
             color: #fff;
             padding-left: 10px;
             padding-right: 10px;
@@ -128,7 +134,7 @@ export default {
     .logo {
         height: 61px;
         border-right: 1px solid white;
-        border-bottom: 1px solid white;
+        // border-bottom: 1px solid white;
         vertical-align: middle;
     }
     .main{
@@ -141,9 +147,10 @@ export default {
         }
     }
     .userinfo{
+        float: right;
         height: 61px;
         // border-left: 1px solid white;
-        border-bottom: 1px solid white;
+        // border-bottom: 1px solid white;
         img{
         border-radius: 10px;
         }

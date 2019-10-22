@@ -19,16 +19,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  *{
-    margin: 0;
-    padding: 0;
-  }
+
   .container {
     position:absolute;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
-    // background: rgba(224, 234, 235, 0.1);
+    background: rgba(12, 12, 12, 0.1);
   }
 </style>  

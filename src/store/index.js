@@ -6,7 +6,8 @@ import AppStore from './modules/AppStore.js';
 const store = new vuex.Store({
     state: {
         appName: "Cassie",  // 应用名称
-        collapse:false  // 导航栏收缩状态
+        collapse: false,  // 导航栏收缩状态
+        isCollapse:''
     },
     getters: {
         collapse(state){// 对应着上面state
