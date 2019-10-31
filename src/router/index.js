@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/views/Login'
 import Home from '@/views/Home'
-import NotFound from '@/views/404'
+import NotFound from '@/views/error/404'
 import InformationManagement from '@/views/MenuContent/informationManagement'
 import MessageOfMe from '@/views/MenuContent/messageOfMe'
 import MyRumor from '@/views/MenuContent/myRumor'
@@ -57,7 +57,6 @@ var router = new Router({
             title: "用户列表" // 页面标题
           }
         }
-
       ]
     },
     {

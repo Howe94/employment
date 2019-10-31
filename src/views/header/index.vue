@@ -3,14 +3,13 @@
       <!-- <el-col :span="4" class="logo" :class="this.$store.state.collapse?'menu-bar-collapse-width':'el-col-4'">
         <img :src="this.logo" /><span>{{isCollapse?sysName:sysName}}</span>
       </el-col> -->
-      <div class="logo" :class="$store.state.collapse?'el-col-1':'el-col-4'">
-        <img :src="this.logo" /><span>{{$store.state.collapse?"":sysName}}</span>
+      <div class="logo" :class="$store.state.app.collapse?'el-col-1':'el-col-4'">
+        <img :src="this.logo" /><span>{{$store.state.app.collapse?"":sysName}}</span>
       </div>
       <el-col :span="1">
         <div class="tools" @click.prevent="collapse">
-            <i :class="$store.state.collapse?'el-icon-s-unfold':'el-icon-menu'"></i>
+            <i :class="$store.state.app.collapse?'el-icon-s-unfold':'el-icon-menu'"></i>
         </div>
-					<!-- <i class="fa fa-align-justify"></i> -->
 	  </el-col>
 
       <el-col :span="15">
@@ -25,8 +24,8 @@
             @select="handleSelectHearNavBar"
           >
             <el-menu-item index="1">{{$t("header.home")}}</el-menu-item>
-            <el-menu-item index="2">{{$t("header.informationCenter")}}</el-menu-item>
-            <el-menu-item index="3">{{$t("header.messagemanagement")}}</el-menu-item>
+            <el-menu-item index="2">{{$t("header.EIM")}}</el-menu-item>
+            <el-menu-item index="3">{{$t("header.CEIM")}}</el-menu-item>
           </el-menu>
         </div>
       </el-col>
@@ -51,9 +50,9 @@
 
 </template>
 <script>
-import axios from "axios";
-import mock from "@/mock/index.js";
-import store from "@/store/index.js"
+import { mapState } from 'vuex'
+import store from "@/store/index"
+import mock from "@/mock/index"
 export default {
     data() {
         return {
@@ -62,7 +61,7 @@ export default {
             logo: "",
             userName: "",
             userAvatar: "",
-            isCollapse: false,
+            // collapse: "false",
         };
     },
 
@@ -70,9 +69,7 @@ export default {
         //折叠导航栏
         collapse: function() {
             this.$store.commit('collapse')
-            // this.$store.state.isCollapse = this.isCollapse;
-            console.log(this.$store.state.collapse)
-            // this.isCollapse = !this.isCollapse;
+            console.log(this.collapse)
         },
         //退出登录
         logout: function() {
@@ -99,7 +96,12 @@ export default {
             this.userName = user;
             this.userAvatar = require("@/assets/userInfo.png");
         }
-    }
+    },
+    // computed: {
+    //   ...mapState({
+    //     collapse: state => state.app.collapse,
+    //   })
+    // }
 
 };
 </script>

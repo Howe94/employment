@@ -1,25 +1,28 @@
 {
     "header": {
         "home": "首页",
-        "informationCenter": "消息中心",
-        "messagemanagement": "留言管理"
+        "EIM": "就业信息管理",
+        "CEIM": "班级就业信息管理"
     },
     "asideMenu": {
-        "information": {
-            "title": "信息管理",
-            "messageOfMe": "我的留言",
-            "informationManagement": "信息管理",
-            "myRumor": "我的畅言"
+        "SM": {
+            "title": "学生管理",
+            "BI": "基本信息",
+            "EI": "就业信息"
         },
-        "userManagement": {
-            "title": "用户管理",
-            "userList": "用户列表"
+        "EIM": {
+            "title": "就业信息",
+            "EIM": "就业信息管理"
+
         },
-        "informationStatistics": {
-            "title": "信息统计"
+        "CMS": {
+            "title": "班级就业"
         },
-        "systemSettings": {
-            "title": "系统设置"
+        "CI": {
+            "title": "辅导员信息"
+        },
+        "AM": {
+            "title": "权限管理"
         }
     },
     "userinfo": {

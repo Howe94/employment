@@ -3,17 +3,21 @@
   <!-- 头部导航栏 -->
   <HEADER></HEADER>
   <!-- 导航菜单栏 -->
-  <MAIN></MAIN>
+  <CONTENT></CONTENT>
+  <FOOTER></FOOTER>
   </el-row>
 </template>
 
 <script>
-import MAIN from "./main/index"
+import CONTENT from "./content/index"
 import HEADER from "./header/index"
+import FOOTER from "./footer/index"
 export default {
   components:{
     HEADER,
-    MAIN
+    CONTENT,
+    FOOTER
+    // error
   }
 };
 </script>
@@ -27,5 +31,8 @@ export default {
     right: 0px;
     bottom: 0px;
     background: rgba(12, 12, 12, 0.1);
+  }
+  .el-submenu__title{
+    padding-left:0px !important;
   }
 </style>  
