@@ -6,6 +6,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import api from './http/index'
 import i18n from './i18n/index'
 import store from './store/index'
+import './assets/icon/iconfont.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

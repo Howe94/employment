@@ -10,8 +10,8 @@
 
 <script>
 import CONTENT from "./content/index"
-import HEADER from "./header/index"
-import FOOTER from "./footer/index"
+import HEADER from "@/components/header/index"
+import FOOTER from "@/components/footer/index"
 export default {
   components:{
     HEADER,
@@ -35,4 +35,4 @@ export default {
   .el-submenu__title{
     padding-left:0px !important;
   }
-</style>  
+</style>

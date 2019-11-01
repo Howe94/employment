@@ -1,6 +1,6 @@
 <template>
   <el-col :span="24" class="main">
-    <div :class="collapse?'el-col-1':'el-col-4'">
+    <div :class="collapse?'shrink-width aside-box':'expand-width aside-box'">
     <aside class="aside">
       <el-menu
         default-active="1-4-1"
@@ -11,7 +11,8 @@
       >
         <el-submenu index="1">
           <template slot="title">
-            <i class="el-icon-s-comment icon-fontSize"></i>
+            <i class="el-icon-thirdCustomermanagement-fill icon-fontSize"></i>
+            
             <span slot="title">{{$t("asideMenu.SM.title")}}</span>
           </template>
           <el-menu-item
@@ -25,7 +26,7 @@
         </el-submenu>
         <el-submenu index="2">
           <template slot="title">
-            <i class="el-icon-user-solid icon-fontSize"></i>
+            <i class="el-icon-thirdSimilarproducts-fill icon-fontSize"></i>
             <span slot="title">{{$t("asideMenu.EIM.title")}}</span>
           </template>
           <el-menu-item
@@ -34,11 +35,11 @@
           >{{$t("asideMenu.EIM.EIM")}}</el-menu-item>
         </el-submenu>
         <el-menu-item index="3">
-          <i class="el-icon-document icon-fontSize"></i>
+          <i class="el-icon-thirdform-fill icon-fontSize"></i>
           <span slot="title">{{$t("asideMenu.CMS.title")}}</span>
         </el-menu-item>
         <el-menu-item index="4">
-          <i class="el-icon-setting icon-fontSize"></i>
+          <i class="el-icon-thirdcertified-supplier-fill icon-fontSize"></i>
           <span slot="title">{{$t("asideMenu.CI.title")}}</span>
         </el-menu-item>
         <el-menu-item index="5">
@@ -48,7 +49,7 @@
       </el-menu>
     </aside>
     </div>
-    <div :class="collapse?'el-col-23':'el-col-20'">
+    <div :class="collapse?'context-box':'context-box'">
       <section class="content-container">
         <router-view></router-view>
       </section>
@@ -80,6 +81,27 @@ export default {
 <style lang="scss" scoped>
 .main, .main div, aside, section, ul{
     height:100%;
+    .aside-box {
+      display: inline-block;
+      float: left;
+    }
+    .shrink-width {
+      width: 65px;
+      transition:width 1s;
+    }
+    .expand-width {
+      width: 200px;
+      transition:width 1s;
+    }
+    .context-box {
+      display: flex;
+      position: relative;
+      .content-container{
+        width: 100%;
+      }
+      // width: 100% !important;
+    }
+
 }
 .aside {
     border-right: solid 1px #e6e6e6;

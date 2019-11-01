@@ -3,7 +3,7 @@
       <!-- <el-col :span="4" class="logo" :class="this.$store.state.collapse?'menu-bar-collapse-width':'el-col-4'">
         <img :src="this.logo" /><span>{{isCollapse?sysName:sysName}}</span>
       </el-col> -->
-      <div class="logo" :class="$store.state.app.collapse?'el-col-1':'el-col-4'">
+      <div class="logo" :class="$store.state.app.collapse?'shrink-width':'expand-width'">
         <img :src="this.logo" /><span>{{$store.state.app.collapse?"":sysName}}</span>
       </div>
       <el-col :span="1">
@@ -131,6 +131,18 @@ export default {
             height: 60px;
             line-height: 60px;
             cursor: pointer;
+        }
+        .logo {
+            display: inline-block;
+            float: left;
+        }
+        .shrink-width {
+          width: 65px;
+          transition:width 1s;
+        }
+        .expand-width {
+          width: 200px;
+          transition:width 1s;
         }
     }
     .logo {

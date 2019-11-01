@@ -11,29 +11,39 @@
     </el-table-column> -->
     <el-table-column
      label="序号"
-      type="index"
-      width="100">
+      type="index">
     </el-table-column>
     <el-table-column
-      label="日期"
-      width="180">
+      label="学号">
       <template slot-scope="scope">
-        <i class="el-icon-time"></i>
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span style="margin-left: 10px">{{ scope.row.stuNo }}</span>
       </template>
     </el-table-column>
 
     <el-table-column
-      label="姓名"
-      width="180">
+      label="姓名">
       <template slot-scope="scope">
         <i class="el-icon-name"></i>
         <span style="margin-left: 10px">{{ scope.row.name }}</span>
       </template>
     </el-table-column>
+
     <el-table-column
-      label="住址"
-      width="280">
+      label="性别">
+      <template slot-scope="scope">
+        <span style="margin-left: 10px">{{ scope.row.sex }}</span>
+      </template>
+    </el-table-column>
+
+    <el-table-column
+      label="联系方式">
+      <template slot-scope="scope">
+        <span style="margin-left: 10px">{{ scope.row.telphone }}</span>
+      </template>
+    </el-table-column>
+
+    <el-table-column
+      label="住址">
       <template slot-scope="scope">
         <i class="el-icon-address"></i>
         <span style="margin-left: 10px">{{ scope.row.address }}</span>
@@ -74,21 +84,29 @@
     data() {
       return {
         tableData: [{
-          date: '2016-05-02',
+          stuNo: '161543218',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
+          sex: '男',
+          telphone: '13229451649',
+          address: '广东省广州市天河区广东金融学院'
         }, {
-          date: '2016-05-04',
+          stuNo: '161543218',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
+          sex: '男',
+          telphone: '13229451649',
+          address: '广东省广州市天河区广东金融学院'
         }, {
-          date: '2016-05-01',
+          stuNo: '161543218',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
+          sex: '男',
+          telphone: '13229451649',
+          address: '广东省广州市天河区广东金融学院'
         }, {
-          date: '2016-05-03',
+          stuNo: '161543218',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
+          sex: '男',
+          telphone: '13229451649',
+          address: '广东省广州市天河区广东金融学院'
         }]
       }
     },
