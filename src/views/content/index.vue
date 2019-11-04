@@ -12,34 +12,48 @@
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-thirdCustomermanagement-fill icon-fontSize"></i>
-            
-            <span slot="title">{{$t("asideMenu.SM.title")}}</span>
+            <span slot="title">{{$t("asideMenu.CM.title")}}</span>
           </template>
           <el-menu-item
             index="1-1"
             @click="$router.push('MessageOfMe')"
-          >{{$t("asideMenu.SM.BI")}}</el-menu-item>
+          >{{$t("asideMenu.CM.SM")}}</el-menu-item>
           <el-menu-item
             index="1-2"
             @click="$router.push('InformationManagement')"
-          >{{$t("asideMenu.SM.EI")}}</el-menu-item>
+          >{{$t("asideMenu.CM.EI")}}</el-menu-item>
+          <el-menu-item
+            index="1-3"
+            @click="$router.push('InformationManagement')"
+          >{{$t("asideMenu.CM.ES")}}</el-menu-item>
+
         </el-submenu>
+
         <el-submenu index="2">
           <template slot="title">
             <i class="el-icon-thirdSimilarproducts-fill icon-fontSize"></i>
-            <span slot="title">{{$t("asideMenu.EIM.title")}}</span>
+            <span slot="title">{{$t("asideMenu.EM.title")}}</span>
           </template>
           <el-menu-item
             index="2-1"
             @click="$router.push('userList')"
-          >{{$t("asideMenu.EIM.EIM")}}</el-menu-item>
+          >{{$t("asideMenu.EM.EIR")}}</el-menu-item>
+           <el-menu-item
+            index="2-2"
+            @click="$router.push('userList')"
+          >{{$t("asideMenu.EM.PER")}}</el-menu-item>
+          <el-menu-item
+            index="2-3"
+            @click="$router.push('userList')"
+          >{{$t("asideMenu.EM.CG")}}</el-menu-item>
+          <el-menu-item
+            index="2-3"
+            @click="$router.push('userList')"
+          >{{$t("asideMenu.EM.ES")}}</el-menu-item>
         </el-submenu>
+
         <el-menu-item index="3">
           <i class="el-icon-thirdform-fill icon-fontSize"></i>
-          <span slot="title">{{$t("asideMenu.CMS.title")}}</span>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <i class="el-icon-thirdcertified-supplier-fill icon-fontSize"></i>
           <span slot="title">{{$t("asideMenu.CI.title")}}</span>
         </el-menu-item>
         <el-menu-item index="5">

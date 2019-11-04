@@ -1,7 +1,7 @@
 import Mock from 'mockjs'
-import * as login from './modules/login'
-import * as user from './modules/user'
-import * as menu from './modules/menu'
+import * as login from './moudules/login'
+import * as user from './moudules/user'
+import * as menu from './moudules/menu'
 
 // 1. 开启/关闭[业务模块]拦截, 通过调用fnCreate方法[isOpen参数]设置.
 // 2. 开启/关闭[业务模块中某个请求]拦截, 通过函数返回对象中的[isOpen属性]设置.

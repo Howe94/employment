@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/views/Login'
 import Home from '@/views/Home'
-import NotFound from '@/views/error/404'
+import NotFound from '@/components/error/404'
 import InformationManagement from '@/views/MenuContent/informationManagement'
 import MessageOfMe from '@/views/MenuContent/messageOfMe'
 import MyRumor from '@/views/MenuContent/myRumor'
@@ -83,7 +83,7 @@ var router = new Router({
 
 });
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || '统一申办';
+  document.title = to.meta.title || '学生就业信息管理系统';
   let user =sessionStorage.getItem('user');
   if(to.path == '/login') {
      if(user){
