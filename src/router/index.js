@@ -6,7 +6,7 @@ import NotFound from '@/components/error/404'
 import InformationManagement from '@/views/MenuContent/informationManagement'
 import MessageOfMe from '@/views/MenuContent/messageOfMe'
 import MyRumor from '@/views/MenuContent/myRumor'
-import UserList from '@/views/MenuContent/userList'
+import ProfessionalManagement from '@/views/MenuContent/ProfessionalManagement/index.vue'
 
 Vue.use(Router)
 
@@ -49,12 +49,12 @@ var router = new Router({
           }
         },
         {
-          path: '/UserList',
-          name: 'UserList',
-          component: UserList,
+          path: '/ProfessionalManagement',
+          name: 'ProfessionalManagement',
+          component: ProfessionalManagement,
           meta: {
             requireAuth: true, // 是否需要登录的
-            title: "用户列表" // 页面标题
+            title: "专业管理" // 页面标题
           }
         }
       ]
