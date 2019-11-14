@@ -4,11 +4,13 @@
 import * as login from './moudules/login'
 import * as user from './moudules/user'
 import * as menu from './moudules/menu'
+import * as information from './moudules/information'
 
 
 // 默认全部导出
 export default {
     login,
     user,
-    menu
+    menu,
+    information
 }

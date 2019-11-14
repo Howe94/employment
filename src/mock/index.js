@@ -2,12 +2,14 @@ import Mock from 'mockjs'
 import * as login from './moudules/login'
 import * as user from './moudules/user'
 import * as menu from './moudules/menu'
+import * as information from './moudules/information'
 
 // 1. 开启/关闭[业务模块]拦截, 通过调用fnCreate方法[isOpen参数]设置.
 // 2. 开启/关闭[业务模块中某个请求]拦截, 通过函数返回对象中的[isOpen属性]设置.
 fnCreate(login, true)
 fnCreate(user, true)
 fnCreate(menu, true)
+fnCreate(information, true)
 
 /**
  * 创建mock模拟数据

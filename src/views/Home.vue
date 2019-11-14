@@ -30,7 +30,7 @@ export default {
     left: 0px;
     right: 0px;
     bottom: 0px;
-    background: rgba(12, 12, 12, 0.1);
+    // background: rgba(12, 12, 12, 0.1);
   }
   .el-submenu__title{
     padding-left:0px !important;

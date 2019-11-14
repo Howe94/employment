@@ -6,8 +6,8 @@ import NotFound from '@/components/error/404'
 import InformationManagement from '@/views/MenuContent/informationManagement'
 import MessageOfMe from '@/views/MenuContent/messageOfMe'
 import MyRumor from '@/views/MenuContent/myRumor'
-import ProfessionalManagement from '@/views/MenuContent/ProfessionalManagement/index.vue'
-
+import studentManagement from '@/views/MenuContent/ProfessionalManagement/studentManagement/index.vue'
+// import classManagement from '@/views/MenuContent/ProfessionalManagement/classManagement/index.vue'
 Vue.use(Router)
 
 var router = new Router({
@@ -49,12 +49,21 @@ var router = new Router({
           }
         },
         {
-          path: '/ProfessionalManagement',
-          name: 'ProfessionalManagement',
-          component: ProfessionalManagement,
+          path: '/studentManagement',
+          name: 'studentManagement',
+          component: studentManagement,
           meta: {
             requireAuth: true, // 是否需要登录的
-            title: "专业管理" // 页面标题
+            title: "学生管理" // 页面标题
+          }
+        },
+        {
+          path: '/classManagement',
+          name: 'classManagement',
+          component: studentManagement,
+          meta: {
+            requireAuth: true, // 是否需要登录的
+            title: "班级管理" // 页面标题
           }
         }
       ]

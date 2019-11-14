@@ -12,20 +12,20 @@
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-thirdCustomermanagement-fill icon-fontSize"></i>
-            <span slot="title">{{$t("asideMenu.CM.title")}}</span>
+            <span slot="title">{{$t("asideMenu.PM.title")}}</span>
           </template>
           <el-menu-item
             index="1-1"
-            @click="$router.push('MessageOfMe')"
-          >{{$t("asideMenu.CM.SM")}}</el-menu-item>
+            @click="$router.push('classManagement')"
+          >{{$t("asideMenu.PM.CM")}}</el-menu-item>
           <el-menu-item
             index="1-2"
-            @click="$router.push('InformationManagement')"
-          >{{$t("asideMenu.CM.EI")}}</el-menu-item>
+            @click="$router.push('studentManagement')"
+          >{{$t("asideMenu.PM.SM")}}</el-menu-item>
           <el-menu-item
             index="1-3"
             @click="$router.push('InformationManagement')"
-          >{{$t("asideMenu.CM.ES")}}</el-menu-item>
+          >{{$t("asideMenu.PM.ES")}}</el-menu-item>
 
         </el-submenu>
 
@@ -63,7 +63,7 @@
       </el-menu>
     </aside>
     </div>
-    <div :class="collapse?'context-box':'context-box'">
+    <div :class="collapse?'container-box expand-container':'container-box shrink-container'">
       <section class="content-container">
         <router-view></router-view>
       </section>
@@ -100,20 +100,24 @@ export default {
       float: left;
     }
     .shrink-width {
-      width: 65px;
+      width: 5%;
       transition:width 1s;
     }
     .expand-width {
-      width: 200px;
+      width: 15%;
       transition:width 1s;
     }
-    .context-box {
-      display: flex;
-      position: relative;
+    .container-box {
+      display: inline-block;
       .content-container{
-        width: 100%;
+        margin: 5% 5%;
       }
-      // width: 100% !important;
+    }
+    .shrink-container{
+      width: 85%;
+    }
+    .expand-container{
+      width: 95%;
     }
 
 }
@@ -131,7 +135,6 @@ export default {
   top: 50%;
   left: 15px;
   margin-top: -7px;
-
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   min-height: 400px;
