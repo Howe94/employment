@@ -66,6 +66,7 @@
     <div :class="collapse?'container-box expand-container':'container-box shrink-container'">
       <section class="content-container">
         <router-view></router-view>
+        
       </section>
     </div>
   </el-col>

@@ -7,7 +7,7 @@ import InformationManagement from '@/views/MenuContent/informationManagement'
 import MessageOfMe from '@/views/MenuContent/messageOfMe'
 import MyRumor from '@/views/MenuContent/myRumor'
 import studentManagement from '@/views/MenuContent/ProfessionalManagement/studentManagement/index.vue'
-// import classManagement from '@/views/MenuContent/ProfessionalManagement/classManagement/index.vue'
+import classManagement from '@/views/MenuContent/ProfessionalManagement/classManagement/index.vue'
 Vue.use(Router)
 
 var router = new Router({
@@ -60,7 +60,7 @@ var router = new Router({
         {
           path: '/classManagement',
           name: 'classManagement',
-          component: studentManagement,
+          component: classManagement,
           meta: {
             requireAuth: true, // 是否需要登录的
             title: "班级管理" // 页面标题

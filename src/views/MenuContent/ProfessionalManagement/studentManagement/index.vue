@@ -1,27 +1,32 @@
 <template>
   <div class="controlseq-content common-appoint">
-    <el-tabs @tab-click="handleClick">
+    <el-tabs v-model="activeIndex" @tab-click="handleClick">
       <el-tab-pane :label="'基本信息'" name="basicInformation">
         <formTable
-          :formdata="formdata"
+          :controlDatas="controlDatas"
+          @clickPages="changePages"
         ></formTable>
       </el-tab-pane>
       <el-tab-pane :label="'就业信息'" name="employmentInformation">
         <formTable
-          :formdata="formdata"
+          :controlDatas="controlDatas"
         ></formTable>
       </el-tab-pane>
       <el-tab-pane :label="'已就业'" name="alreadyEmployed">
         <formTable
-          :formdata="formdata"
+          :controlDatas="controlDatas"
         ></formTable>
       </el-tab-pane>
       <el-tab-pane :label="'未就业'" name="unemployed">
         <formTable
-          :formdata="formdata"
+          :controlDatas="controlDatas"
         ></formTable>
       </el-tab-pane>
     </el-tabs>
+    <pagination
+     :pageObj="pageObj"
+     @clickPages="changePages"
+     ></pagination>
   </div>
 </template>
 
