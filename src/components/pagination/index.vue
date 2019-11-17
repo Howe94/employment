@@ -37,13 +37,6 @@ export default {
       console.log(`当前页: ${val}`);
     },
 
-  },
-
-  created: {
-
-  },
-  mounted () {
-    // console.log("+++++++++++++++++"+this.test)
   }
 }
 </script>

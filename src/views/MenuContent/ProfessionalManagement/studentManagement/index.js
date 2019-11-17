@@ -65,8 +65,8 @@ export default {
         "get"
       ).then(res => {
         if (res.status == "200") {
-          console.log("+++++++++++++++")
-          console.log(res.data)
+          // console.log("+++++++++++++++")
+          // console.log(res.data)
           this.dataList = res.data;
           this.pageObj.total = res.data.length;
           this.changePages(20, 1)
@@ -78,9 +78,6 @@ export default {
   },
   created () {
     this.getInformation()
-
-  },
-  mounted () {
 
   }
 
