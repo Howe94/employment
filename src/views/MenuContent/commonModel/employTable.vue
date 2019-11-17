@@ -19,22 +19,22 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="性别">
+      <el-table-column label="就业单位名称">
         <template slot-scope="scope">
-          <span style="margin-left: 10px">{{ scope.row.sex }}</span>
+          <span style="margin-left: 10px">{{ scope.row.unitName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="联系方式">
+      <el-table-column label="岗位名称">
         <template slot-scope="scope">
-          <span style="margin-left: 10px">{{ scope.row.stuTel }}</span>
+          <span style="margin-left: 10px">{{ scope.row.jobName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="住址">
+      <el-table-column label="薪酬（月薪）">
         <template slot-scope="scope">
           <i class="el-icon-address"></i>
-          <span style="margin-left: 10px">{{ scope.row.homeAddress }}</span>
+          <span style="margin-left: 10px">{{ scope.row.pay }}</span>
         </template>
       </el-table-column>
 
@@ -52,7 +52,6 @@
 </template>
 
 <script>
-// import tabMenus from "./tabMenus/index"
 export default {
   // components:{
   //   tabMenus

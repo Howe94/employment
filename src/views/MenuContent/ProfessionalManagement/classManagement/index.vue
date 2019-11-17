@@ -1,25 +1,22 @@
 <template>
   <div class="controlseq-content common-appoint">
-    <el-tabs v-model="activeIndex" @tab-click="handleClick">
-      <el-tab-pane :label="'全部班级'" name="allclass">
-        <classTable
-          :classdata="classdata"
-        ></classTable>
+    <el-tabs v-model="activeIndex"
+             @tab-click="handleClick">
+      <el-tab-pane :label="'全部班级'"
+                   name="allclass">
+        <classTable :controlDatas="controlDatas"></classTable>
       </el-tab-pane>
-      <el-tab-pane :label="'计算机科学与技术'" name="CSAT">
-        <classTable
-          :classdata="classdata"
-        ></classTable>
+      <el-tab-pane :label="'计算机科学与技术'"
+                   name="CSAT">
+        <classTable :controlDatas="controlDatas"></classTable>
       </el-tab-pane>
-      <el-tab-pane :label="'信息管理与信息系统'" name="IMAIS">
-        <classTable
-          :classdata="classdata"
-        ></classTable>
+      <el-tab-pane :label="'信息管理与信息系统'"
+                   name="IMAIS">
+        <classTable :controlDatas="controlDatas"></classTable>
       </el-tab-pane>
-      <el-tab-pane :label="'电子商务 '" name="E-commerce">
-        <classTable
-          :classdata="classdata"
-        ></classTable>
+      <el-tab-pane :label="'电子商务 '"
+                   name="E-commerce">
+        <classTable :controlDatas="controlDatas"></classTable>
       </el-tab-pane>
     </el-tabs>
     <pagination :pageObj="pageObj"></pagination>
@@ -28,5 +25,5 @@
 
 <script src="./index.js"></script>
 <style lang="scss" scoped>
-@import "./index.scss";
+@import './index.scss';
 </style>
