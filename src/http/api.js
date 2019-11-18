@@ -16,3 +16,7 @@ export const getStuList = params => { return axios.get(`${bashPath}/studentInfor
 
 //获取学生就业信息
 export const getEmployList = params => { return axios.get(`${bashPath}/stuEmployInformation`, { params: params }); };
+
+
+//获取专业信息
+export const getclassList = params => { return axios.get(`${bashPath}/classInformation`, { params: params }); };

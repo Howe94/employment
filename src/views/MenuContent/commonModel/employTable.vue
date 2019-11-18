@@ -1,11 +1,15 @@
 <template>
   <el-row class="container">
     <!-- <tabMenus></tabMenus> -->
-    <el-table :data="controlDatas"
-              style="width: 100%">
-      <el-table-column label="序号"
-                       type="index">
-      </el-table-column>
+
+    <el-table
+      :data="controlDatas"
+      highlight-current-row
+      @selection-change="selsChange"
+      style="width: 100%"
+    >
+      <el-table-column type="selection" width="55"></el-table-column>
+      <el-table-column label="序号" type="index"></el-table-column>
       <el-table-column label="学号">
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{ scope.row.stuNo }}</span>
@@ -40,11 +44,8 @@
 
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini"
-                     @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button size="mini"
-                     type="danger"
-                     @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -57,17 +58,20 @@ export default {
   //   tabMenus
   // },
   props: ["controlDatas"],
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
   methods: {
-    handleEdit (index, row) {
+    //全选单选多选
+    selsChange: function(sels) {
+      this.sels = sels;
+    },
+    handleEdit(index, row) {
       console.log(index, row);
     },
-    handleDelete (index, row) {
+    handleDelete(index, row) {
       console.log(index, row);
     }
   }
-}
+};
 </script>

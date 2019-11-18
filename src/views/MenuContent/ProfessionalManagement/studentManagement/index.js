@@ -26,8 +26,7 @@ export default {
       let name = tab.name;
       switch (name) {
         case "basicInformation":
-          this.type = 3;
-          this.getStuInformation(this.type); break;
+          this.getStuInformation(name); break;
         case "employmentInformation":
           this.type = 2;
           this.getEmploymentInformation(this.type); break;
@@ -44,9 +43,9 @@ export default {
     changePages (page_size, currentPage) {
       this.controlDatas = this.dataList.slice((currentPage - 1) * page_size, currentPage * page_size)
     },
-    getStuInformation (type) {
+    getStuInformation (name) {
       getStuList({
-        type: type
+        name: name
       },
         "get"
       ).then(res => {
@@ -77,7 +76,7 @@ export default {
     }
   },
   created () {
-    this.getStuInformation(3)
+    this.getStuInformation()
 
   }
 

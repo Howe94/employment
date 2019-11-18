@@ -1,5 +1,6 @@
 import classTable from "../../commonModel/classTable.vue";
-import pagination from "@/components/pagination/index"
+import pagination from "@/components/pagination/index";
+import { getclassList } from "../../../../http/api"
 import axios from "axios"
 import {
   Loading
@@ -50,15 +51,15 @@ export default {
       this.controlDatas = this.dataList.slice((currentPage - 1) * page_size, currentPage * page_size)
     },
     getInformation(type) {
-      this.$api.classInfo.classInfo({
+      getclassList({
           type: type
 
         },
         "get"
       ).then(res => {
         if (res.status == "200") {
-          this.dataList = res.data;
-          this.pageObj.total = res.data.length;
+          this.dataList = res.data.classList;
+          this.pageObj.total = res.data.classList.length;
           this.changePages(20, 1)
         }
       }).catch(err => {
