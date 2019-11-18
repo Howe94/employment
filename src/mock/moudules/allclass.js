@@ -1,9 +1,12 @@
 import Mock from 'mockjs'
 var Random = Mock.Random;
-export function classInfo () {
+
+
+
+export function allclass () {
     return {
       // isOpen: false,
-      url: 'http://localhost:8082/classInfo',
+      url: 'http://localhost:8082/allclass',
       type: 'get',
       data: {
         "status": "200",
