@@ -7,7 +7,8 @@ import api from './http/index'
 import i18n from './i18n/index'
 import store from './store/index'
 import './assets/icon/iconfont.css'
-
+import Mock from './mock'
+Mock.bootstrap();
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.use(api)

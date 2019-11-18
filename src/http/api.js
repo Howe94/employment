@@ -1,20 +1,18 @@
 /* 
  * 接口统一集成模块
  */
-import * as login from './moudules/login'
-import * as user from './moudules/user'
-import * as menu from './moudules/menu'
-import * as information from './moudules/information'
-import * as classInfo from './moudules/classInfo'
-import * as employmentInf from './moudules/employmentInf'
 
+/**
+ * 2019-11-18 11:51 重新编写接口
+ */
+import axios from 'axios'
+let bashPath = ''
 
-// 默认全部导出
-export default {
-  login,
-  user,
-  menu,
-  information,
-  classInfo,
-  employmentInf
-}
+export const requestLogin = params => { return axios.post(`${bashPath}/login`, params).then(res => res.data); };
+
+// getStuList 获取学生基本信息列表
+
+export const getStuList = params => { return axios.get(`${bashPath}/studentInformation`, { params: params }); };
+
+//获取学生就业信息
+export const getEmployList = params => { return axios.get(`${bashPath}/stuEmployInformation`, { params: params }); };

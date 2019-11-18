@@ -1,6 +1,7 @@
 import formTable from "../../commonModel/formTable.vue";
 import pagination from "@/components/pagination/index";
 import employTable from "../../commonModel/employTable.vue"
+import { getStuList, getEmployList } from '../../../../http/api';
 import axios from "axios"
 import { Loading } from "element-ui";
 export default {
@@ -13,7 +14,7 @@ export default {
       },
       activeIndex: "basicInformation",
       labelPosition: 'right',
-      formdata: [],
+      dataList: [],
       employdata: [],
       controlDatas: [],
       type: 3
@@ -26,7 +27,7 @@ export default {
       switch (name) {
         case "basicInformation":
           this.type = 3;
-          this.getInformation(this.type); break;
+          this.getStuInformation(this.type); break;
         case "employmentInformation":
           this.type = 2;
           this.getEmploymentInformation(this.type); break;
@@ -43,15 +44,16 @@ export default {
     changePages (page_size, currentPage) {
       this.controlDatas = this.dataList.slice((currentPage - 1) * page_size, currentPage * page_size)
     },
-    getInformation (type) {
-      this.$api.information.information({
+    getStuInformation (type) {
+      getStuList({
         type: type
       },
         "get"
       ).then(res => {
         if (res.status == "200") {
-          this.dataList = res.data;
-          this.pageObj.total = res.data.length;
+          console.log(res)
+          this.dataList = res.data.stuList;
+          this.pageObj.total = res.data.stuList.length;
           this.changePages(20, 1)
         }
       }).catch(err => {
@@ -59,16 +61,14 @@ export default {
       });
     },
     getEmploymentInformation (type) {
-      this.$api.employmentInf.employmentInf({
+      getEmployList({
         type: type
       },
         "get"
       ).then(res => {
         if (res.status == "200") {
-          // console.log("+++++++++++++++")
-          // console.log(res.data)
-          this.dataList = res.data;
-          this.pageObj.total = res.data.length;
+          this.dataList = res.data.employList;
+          this.pageObj.total = res.data.employList.length;
           this.changePages(20, 1)
         }
       }).catch(err => {
@@ -77,7 +77,7 @@ export default {
     }
   },
   created () {
-    this.getInformation()
+    this.getStuInformation(3)
 
   }
 

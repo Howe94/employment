@@ -96,16 +96,13 @@ export default {
     this.sysName = "就业信息管理系统";
     this.logo = require("@/assets/logo.png");
     var user = sessionStorage.getItem("user");
+    console.log(user.username)
     if (user) {
-      this.userName = user;
-      this.userAvatar = require("@/assets/userInfo.png");
+      user = JSON.parse(user);
+      this.userName = user.username || '';
+      this.userAvatar = user.avatar || '';
     }
   }
-  // computed: {
-  //   ...mapState({
-  //     collapse: state => state.app.collapse,
-  //   })
-  // }
 };
 </script>
 
