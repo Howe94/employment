@@ -1,7 +1,7 @@
 {
-  "name": "kitty-ui",
+  "name": "employment",
   "version": "1.0.0",
-  "description": "kitty ui project",
+  "description": "学生就业信息管理系统",
   "author": "996341242@qq.com",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "js-cookie": "^2.2.1",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.3.1",
+    "v-distpicker": "^1.2.2",
     "vue": "^2.5.2",
     "vue-i18n": "^8.15.0",
     "vue-router": "^3.0.1",
