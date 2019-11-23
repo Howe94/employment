@@ -11,11 +11,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  pre * {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-  }
+pre * {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

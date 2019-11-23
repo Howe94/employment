@@ -42,6 +42,7 @@ export default {
     // 子组件中 分页触发 父组件的方法
     changePages (page_size, currentPage) {
       this.controlDatas = this.dataList.slice((currentPage - 1) * page_size, currentPage * page_size)
+      // console.log(this.controlDatas)
     },
     getStuInformation (name) {
       getStuList({
@@ -50,8 +51,10 @@ export default {
         "get"
       ).then(res => {
         if (res.status == "200") {
-          console.log(res)
+          // console.log(res)
           this.dataList = res.data.stuList;
+          // this.dataList.sex = res.data.stuList.sex ? "男" : "女";
+          // console.log(this.dataList.sex)
           this.pageObj.total = res.data.stuList.length;
           this.changePages(20, 1)
         }
