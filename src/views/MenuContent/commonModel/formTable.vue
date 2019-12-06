@@ -81,6 +81,7 @@
       :visible.sync="dialogFormVisible"
       :close-on-click-modal="true"
       :destroy-on-close="true"
+      @close="closeDialog"
     >
       <el-form
         :model="editForm"
@@ -126,12 +127,10 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="生源地">
-          <v-distpicker
+          <v-distpicker hide-area
             :province="biogenic_land.province"
             :city="biogenic_land.city"
-            only-city
-            @province="onChangeProvince"
-            @city="onChangeCity"
+            @selected="onChangeAddress"
           ></v-distpicker>
           <el-input v-model="editForm.biogenicLand" style="display:none"></el-input>
         </el-form-item>
@@ -158,9 +157,7 @@
             :province="home_address.province"
             :city="home_address.city"
             :area="home_address.area"
-            @province="onChangeProvince"
-            @city="onChangeCity"
-            @area="onChangeArea"
+            @selected="onChangeAddress"
           ></v-distpicker>
           <el-input v-model="editForm.homeAddress" style="display:none"></el-input>
         </el-form-item>
@@ -244,14 +241,8 @@ export default {
         count1++;
       }
     },
-    onChangeProvince(data) {
-      this.areaSelect.province = data.value;
-    },
-    onChangeCity(data) {
-      this.areaSelect.city = data.value;
-    },
-    onChangeArea(data) {
-      this.areaSelect.area = data.value;
+    onChangeAddress(data) {
+      console.log(data)
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -275,5 +266,11 @@ export default {
 }
 .el-form-item__content {
   text-align: left;
+}
+select {
+  color: #089feb;
+  &:nth-of-type(3){
+    display: none;
+  }
 }
 </style>
