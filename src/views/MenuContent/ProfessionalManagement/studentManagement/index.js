@@ -1,13 +1,22 @@
 import formTable from "../../commonModel/formTable.vue";
 import pagination from "@/components/pagination/index";
 import employTable from "../../commonModel/employTable.vue"
-import { getStuList, getEmployList } from '../../../../http/api';
+import {
+  getStuList,
+  getEmployList
+} from '../../../../http/api';
 import axios from "axios"
-import { Loading } from "element-ui";
+import {
+  Loading
+} from "element-ui";
 export default {
   name: "appointment-content",
-  components: { formTable, pagination, employTable },
-  data () {
+  components: {
+    formTable,
+    pagination,
+    employTable
+  },
+  data() {
     return {
       pageObj: {
         total: 0,
@@ -21,33 +30,36 @@ export default {
     };
   },
   methods: {
-    handleClick (tab, event) {
+    handleClick(tab, event) {
       this.controlDatas = [];
       let name = tab.name;
       switch (name) {
         case "basicInformation":
-          this.getStuInformation(name); break;
+          this.getStuInformation(name);
+          break;
         case "employmentInformation":
           this.type = 2;
-          this.getEmploymentInformation(this.type); break;
+          this.getEmploymentInformation(this.type);
+          break;
         case "alreadyEmployed":
           this.type = 1;
-          this.getEmploymentInformation(this.type); break;
+          this.getEmploymentInformation(this.type);
+          break;
         case "unemployed":
           this.type = 0;
-          this.getEmploymentInformation(this.type); break;
+          this.getEmploymentInformation(this.type);
+          break;
       }
-
     },
     // 子组件中 分页触发 父组件的方法
-    changePages (page_size, currentPage) {
+    changePages(page_size, currentPage) {
       this.controlDatas = this.dataList.slice((currentPage - 1) * page_size, currentPage * page_size)
       // console.log(this.controlDatas)
     },
-    getStuInformation (name) {
+    getStuInformation(name) {
       getStuList({
-        name: name
-      },
+          name: name
+        },
         "get"
       ).then(res => {
         if (res.status == "200") {
@@ -62,10 +74,10 @@ export default {
         console.log(err);
       });
     },
-    getEmploymentInformation (type) {
+    getEmploymentInformation(type) {
       getEmployList({
-        type: type
-      },
+          type: type
+        },
         "get"
       ).then(res => {
         if (res.status == "200") {
@@ -78,7 +90,7 @@ export default {
       });
     }
   },
-  created () {
+  created() {
     this.getStuInformation()
 
   }

@@ -1,6 +1,8 @@
 import classTable from "../../commonModel/classTable.vue";
 import pagination from "@/components/pagination/index";
-import { getclassList } from "../../../../http/api"
+import {
+  getclassList
+} from "../../../../http/api"
 import axios from "axios"
 import {
   Loading

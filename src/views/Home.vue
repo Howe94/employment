@@ -1,19 +1,19 @@
 <template>
   <el-row class="container">
-  <!-- 头部导航栏 -->
-  <HEADER></HEADER>
-  <!-- 导航菜单栏 -->
-  <CONTENT></CONTENT>
-  <FOOTER></FOOTER>
+    <!-- 头部导航栏 -->
+    <HEADER></HEADER>
+    <!-- 导航菜单栏 -->
+    <CONTENT></CONTENT>
+    <FOOTER></FOOTER>
   </el-row>
 </template>
 
 <script>
-import CONTENT from "./content/index"
-import HEADER from "@/components/header/index"
-import FOOTER from "@/components/footer/index"
+import CONTENT from "./content/index";
+import HEADER from "@/components/header/index";
+import FOOTER from "@/components/footer/index";
 export default {
-  components:{
+  components: {
     HEADER,
     CONTENT,
     FOOTER
@@ -23,16 +23,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-  .container {
-    position:absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    // background: rgba(12, 12, 12, 0.1);
-  }
-  .el-submenu__title{
-    padding-left:0px !important;
-  }
+.container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  // background: rgba(12, 12, 12, 0.1);
+}
+.el-submenu__title {
+  padding-left: 0px !important;
+}
 </style>
