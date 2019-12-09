@@ -37,7 +37,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="性别" :class="el-table_8_column_6">
+      <el-table-column label="性别">
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{ scope.row.sex ? "男" : "女" }}</span>
         </template>
@@ -57,13 +57,12 @@
       </el-table-column>
 
       <el-table-column label="操作">
-        <template slot="header">
-          <el-p>操作</el-p>
-        </template>
+        <!-- <template slot="header">
+          <p>操作</p>
+        </template>-->
         <template slot="header">
           <el-button
             class="addStuInfBtn"
-            v-if="dialogStatus=='create'"
             type="primary"
             @click="addStuInf"
           >添加</el-button>
@@ -127,9 +126,10 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="生源地">
-          <v-distpicker hide-area
-            :province="biogenic_land.province"
-            :city="biogenic_land.city"
+          <v-distpicker
+            hide-area
+            :province="selectBiogenicLand.province"
+            :city="selectBiogenicLand.city"
             @selected="onChangeAddress"
           ></v-distpicker>
           <el-input v-model="editForm.biogenicLand" style="display:none"></el-input>
@@ -153,10 +153,9 @@
         </el-form-item>
         <el-form-item label="家庭住址">
           <v-distpicker
-            v-model="editForm.homeAddress"
-            :province="home_address.province"
-            :city="home_address.city"
-            :area="home_address.area"
+            :province="selectHomeAddress.province"
+            :city="selectHomeAddress.city"
+            :area="selectHomeAddress.area"
             @selected="onChangeAddress"
           ></v-distpicker>
           <el-input v-model="editForm.homeAddress" style="display:none"></el-input>
@@ -164,7 +163,8 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click.native="dialogFormVisible=false" @click="closeDialog">取消</el-button>
-        <el-button type="primary" @click="updateData">修改</el-button>
+        <el-button type="primary" @click="updateData" v-if="editFlag">修改</el-button>
+        <el-button type="primary" @click="addUserInfo" v-else>增加</el-button>
         <!-- <el-button type="primary" @click.native="editSubmit" :loading="editLoading">提交</el-button> -->
       </div>
     </el-dialog>
@@ -174,12 +174,25 @@
 <script>
 // import tabMenus from "./tabMenus/index"
 import VDistpicker from "v-distpicker";
+import { updateStuInfo } from "../../../http/api";
+import { Message, Loading } from "element-ui";
+
 export default {
   components: { VDistpicker },
   // components:{
   //   tabMenus
   // },
-  props: ["controlDatas"],
+  // props: ["controlDatas"],
+  props: {
+    controlDatas: {
+      type: Array,
+      default: {}
+    },
+    getStuInformation: {
+      type: Function,
+      default: null
+    }
+  },
   data() {
     return {
       dialogStatus: "create",
@@ -187,6 +200,7 @@ export default {
         update: "编辑信息",
         create: "Create"
       },
+      editFlag: true,
       dialogFormVisible: false,
       editFormRules: {
         name: [{ required: true, message: "请输入姓名", trigger: "blur" }]
@@ -208,11 +222,11 @@ export default {
         homeTel: "", //家庭联系电话
         homeAddress: "" //家庭住址
       },
-      biogenic_land: {
+      selectBiogenicLand: {
         province: "",
         city: ""
       },
-      home_address: {
+      selectHomeAddress: {
         province: "",
         city: "",
         area: ""
@@ -230,30 +244,60 @@ export default {
       this.editForm = Object.assign({}, row);
       var biogenic_landStr = this.editForm.biogenicLand.split(" ");
       var count = 0;
-      for (var key in this.biogenic_land) {
-        this.biogenic_land[key] = biogenic_landStr[count];
+      for (var key in this.selectBiogenicLand) {
+        this.selectBiogenicLand[key] = biogenic_landStr[count];
         count++;
       }
       var home_addressStr = this.editForm.homeAddress.split(" ");
       var count1 = 0;
-      for (var key in this.home_address) {
-        this.home_address[key] = home_addressStr[count1];
+      for (var key in this.selectHomeAddress) {
+        this.selectHomeAddress[key] = home_addressStr[count1];
         count1++;
       }
     },
     onChangeAddress(data) {
-      console.log(data)
+      console.log(data);
     },
     handleDelete(index, row) {
-      console.log(index, row); 
+      console.log(index, row);
     },
-    updateData() {},
+    updateData() {
+      const params = Object.assign({}, this.editForm);
+      updateStuInfo({ params }, "POST")
+        .then(res => {
+          if (res.status == "200") {
+            this.getStuInformation();
+            Message({
+              message: "修改成功！",
+              type: "success"
+            });
+            this.dialogFormVisible = false;
+          } else {
+            Message({
+              message: res.decs,
+              type: "error"
+            });
+          }
+        })
+        .catch(() => {
+          Message({
+            type: "info",
+            message: "未修改"
+          });
+        });
+    },
     addStuInf() {
+      this.editFlag = false
       this.dialogStatus = "update";
       this.dialogFormVisible = true;
     },
+    addUserInfo() {
+      
+    },
     closeDialog() {
       this.editForm = Object.assign({});
+      this.selectHomeAddress = Object.assign({});
+      this.selectBiogenicLand = Object.assign({});
     }
   }
 };
@@ -269,7 +313,7 @@ export default {
 }
 select {
   color: #089feb;
-  &:nth-of-type(3){
+  &:nth-of-type(3) {
     display: none;
   }
 }

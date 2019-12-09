@@ -56,17 +56,14 @@ export default {
       this.controlDatas = this.dataList.slice((currentPage - 1) * page_size, currentPage * page_size)
       // console.log(this.controlDatas)
     },
-    getStuInformation(name) {
+    getStuInformation(stuNo) {
       getStuList({
-          name: name
+        stuNo: stuNo//用于查询
         },
         "get"
       ).then(res => {
         if (res.status == "200") {
-          // console.log(res)
           this.dataList = res.data.stuList;
-          // this.dataList.sex = res.data.stuList.sex ? "男" : "女";
-          // console.log(this.dataList.sex)
           this.pageObj.total = res.data.stuList.length;
           this.changePages(20, 1)
         }

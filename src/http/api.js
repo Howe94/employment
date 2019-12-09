@@ -10,7 +10,7 @@ let bashPath = ''
 
 export const requestLogin = params => { return axios.post(`${bashPath}/login`, params).then(res => res.data); };
 
-// getStuList 获取学生基本信息列表
+//  获取学生基本信息列表
 
 export const getStuList = params => { return axios.get(`${bashPath}/studentInformation`, { params: params }); };
 
@@ -20,3 +20,6 @@ export const getEmployList = params => { return axios.get(`${bashPath}/stuEmploy
 
 //获取专业信息
 export const getclassList = params => { return axios.get(`${bashPath}/classInformation`, { params: params }); };
+
+//更新某个同学的个人信息
+export const updateStuInfo = params => { return axios.post(`${bashPath}/editStuInfo`,  { params: params.params }); };

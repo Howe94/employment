@@ -125,6 +125,40 @@ export default {
     });
 
 
+    //更新个人基本信息
+    mock.onPost('/editStuInfo').reply(config => {
+      let {
+        id,stuNo,stuName,sex,idCard,department,profession,education,politicalStatus,biogenicLand,graduationTime,stuTel,familyContact,homeTel,homeAddress
+      } = JSON.parse(config.data).params;
+      _stuList.some(data => {
+        if(data.id == id) {
+          data.stuNo = stuNo;
+          data.stuName = stuName;
+          data.sex = sex;
+          data.idCard = idCard;
+          data.department = department;
+          data.profession = profession;
+          data.education = education;
+          data.politicalStatus = politicalStatus;
+          data.biogenicLand = biogenicLand;
+          data.graduationTime = graduationTime;
+          data.stuTel = stuTel;
+          data.familyContact = familyContact;
+          data.homeTel = homeTel;
+          data.homeAddress = homeAddress;
+          return true;
+        }
+      });
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '编辑成功'
+          }]);
+        }, 500);
+      });
+    });
+
 
   }
 }
