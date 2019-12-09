@@ -153,7 +153,35 @@ export default {
         setTimeout(() => {
           resolve([200, {
             code: 200,
-            msg: '编辑成功'
+            msg: '修改成功'
+          }]);
+        }, 500);
+      });
+    });
+
+    //删除某个人的个人信息
+    mock.onPost('/delStuInfo').reply(config => {
+      let stuNo = JSON.parse(config.data).params.stuNo;
+      _stuList = _stuList.filter(data => data.stuNo !== stuNo)
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '删除成功'
+          }]);
+        }, 500);
+      });
+    });
+
+    //添加个人基本信息
+    mock.onPost('/addStuInfo').reply(config => {
+      let newStuInfo = JSON.parse(config.data).params;
+      _stuList.push(newStuInfo);
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '修改成功'
           }]);
         }, 500);
       });

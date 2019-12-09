@@ -23,3 +23,9 @@ export const getclassList = params => { return axios.get(`${bashPath}/classInfor
 
 //更新某个同学的个人信息
 export const updateStuInfo = params => { return axios.post(`${bashPath}/editStuInfo`,  { params: params.params }); };
+
+//删除某个同学的个人信息handleDelete
+export const deleteStuInfo = params => { return axios.post(`${bashPath}/delStuInfo`,  { params: params.params}); };
+
+//添加同学个人信息
+export const addNewStu = params => { return axios.post(`${bashPath}/addStuInfo`,  { params: params.params}); };
