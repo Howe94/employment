@@ -161,7 +161,6 @@
         <el-button @click.native="dialogFormVisible=false" @click="closeDialog">取消</el-button>
         <el-button type="primary" @click="updateData" v-if="editFlag">修改</el-button>
         <el-button type="primary" @click="addUserInfo" v-else>增加</el-button>
-        <!-- <el-button type="primary" @click.native="editSubmit" :loading="editLoading">提交</el-button> -->
       </div>
     </el-dialog>
   </el-row>
@@ -175,10 +174,6 @@ import { Message, Loading } from "element-ui";
 import { regular, validateOrder } from "../../../lib/validate";
 export default {
   components: { VDistpicker },
-  // components:{
-  //   tabMenus
-  // },
-  // props: ["controlDatas"],
   props: {
     controlDatas: {
       type: Array,
@@ -274,15 +269,8 @@ export default {
         homeTel: "", //家庭联系电话
         homeAddress: "" //家庭住址
       },
-      selectBiogenicLand: {
-        province: "",
-        city: ""
-      },
-      selectHomeAddress: {
-        province: "",
-        city: "",
-        area: ""
-      }
+      selectBiogenicLand: {},
+      selectHomeAddress: {}
     };
   },
   methods: {
@@ -296,30 +284,34 @@ export default {
       this.dialogFormVisible = true;
       this.editForm = Object.assign({}, row);
       var biogenic_landStr = this.editForm.biogenicLand.split(" ");
-      var count = 0;
-      for (var key in this.selectBiogenicLand) {
-        this.selectBiogenicLand[key] = biogenic_landStr[count];
-        count++;
-      }
       var home_addressStr = this.editForm.homeAddress.split(" ");
-      var count1 = 0;
-      for (var key in this.selectHomeAddress) {
-        this.selectHomeAddress[key] = home_addressStr[count1];
-        count1++;
-      }
+      this.selectBiogenicLand = Object.assign({
+        province: biogenic_landStr[0],
+        city: biogenic_landStr[1]
+      });
+      this.selectHomeAddress = Object.assign({
+        province: home_addressStr[0],
+        city: home_addressStr[1],
+        area: home_addressStr[2]
+      });
     },
     //选择生源地信息
     onChangeBiogenicLand(data) {
-      this.editForm.biogenicLand = data.province.value + "-" + data.city.value;
+      this.editForm.biogenicLand = data.province.value + " " + data.city.value;
     },
     //选择家庭地址信息
     onChangeHomeAddress(data) {
       this.editForm.homeAddress =
-        data.province.value + "-" + data.city.value + "-" + data.area.value;
+        data.province.value + " " + data.city.value + " " + data.area.value;
     },
     //删除某个同学的个人信息
     handleDelete(index, row) {
       const params = Object.assign({}, row);
+      this.$confirm('永久删除该同学基本信息, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
       deleteStuInfo({ params }, "POST")
         .then(res => {
           console.log(res);
@@ -336,13 +328,15 @@ export default {
             });
           }
         })
+        })
         .catch(() => {
           Message({
             type: "info",
-            message: "未修改"
+            message: "取消删除！"
           });
         });
     },
+    //更新某个基本信息
     updateData() {
       const params = Object.assign({}, this.editForm);
       updateStuInfo({ params }, "POST")
@@ -368,11 +362,13 @@ export default {
           });
         });
     },
+    // 添加新的基本信息按钮事件
     addStuInf() {
       this.editFlag = false;
       this.dialogStatus = "create";
       this.dialogFormVisible = true;
     },
+    // 添加新的基本信息
     addUserInfo() {
       this.$refs.editForm.validate(valid => {
         if (valid) {

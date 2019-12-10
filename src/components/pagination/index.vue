@@ -2,9 +2,9 @@
   <div class="block">
     <el-pagination @size-change="handleSizeChange"
                    @current-change="handleCurrentChange"
-                   :current-page="currentPage"
+                   :current-page="pageObj.currentPage"
                    :page-sizes="page_sizes"
-                   :page-size="10"
+                   :page-size="pageObj.page_size"
                    layout="total, sizes, prev, pager, next, jumper"
                    :total="pageObj.total">
     </el-pagination>
@@ -13,11 +13,6 @@
 <script>
 export default {
   props: ["pageObj"],
-  // data() {
-  //   return {
-  //     
-  //   }
-  // },
   data () {
     return {
       currentPage: 1,
@@ -27,17 +22,22 @@ export default {
   },
   methods: {
     handleSizeChange (val) {
-      this.page_size = val;
-      this.$emit("clickPages", this.page_size, this.currentPage);
-      // console.log(`每页 ${val} 条`);
+      this.pageObj.page_size = val;
+      this.$emit("clickPages", this.pageObj.page_size, this.pageObj.currentPage);
     },
     handleCurrentChange (val) {
-      this.currentPage = val;
-      this.$emit("clickPages", this.page_size, this.currentPage);
-      console.log(`当前页: ${val}`);
+      this.pageObj.currentPage = val;
+      this.$emit("clickPages", this.pageObj.page_size, this.pageObj.currentPage);
     },
 
-  }
+  },
+  // watch: {
+  //   pageObj(newVal, oldVal) {
+  //     console.log("+++++====++++++++")
+  //     console.log(this.pageObj)
+  //     this.pageObj = newVal;
+  //   }
+  // }
 }
 </script>
 <style lang="scss" scoped>

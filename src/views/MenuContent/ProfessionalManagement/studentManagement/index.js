@@ -20,6 +20,8 @@ export default {
     return {
       pageObj: {
         total: 0,
+        page_size: 20,
+        currentPage: 1,
       },
       activeIndex: "basicInformation",
       labelPosition: 'right',
@@ -54,7 +56,6 @@ export default {
     // 子组件中 分页触发 父组件的方法
     changePages(page_size, currentPage) {
       this.controlDatas = this.dataList.slice((currentPage - 1) * page_size, currentPage * page_size)
-      // console.log(this.controlDatas)
     },
     getStuInformation(stuNo) {
       getStuList({
@@ -65,6 +66,8 @@ export default {
         if (res.status == "200") {
           this.dataList = res.data.stuList;
           this.pageObj.total = res.data.stuList.length;
+          this.pageObj.page_size = 20;
+          this.pageObj.currentPage = 1;
           this.changePages(20, 1)
         }
       }).catch(err => {
@@ -79,6 +82,7 @@ export default {
       ).then(res => {
         if (res.status == "200") {
           this.dataList = res.data.employList;
+          console.log(this.dataList)
           this.pageObj.total = res.data.employList.length;
           this.changePages(20, 1)
         }
@@ -89,7 +93,6 @@ export default {
   },
   created() {
     this.getStuInformation()
-
   }
 
 };
