@@ -52,15 +52,21 @@
     </el-table>
 
     <!-- 编辑弹框 -->
-    <el-dialog title="提示" :visible.sync="dialogVisible" width="100%" :before-close="handleClose">
-      <div class="iframe-wrapper" ref="wrapper">
-        <iframe
-          class="iframe"
-          @load="iframeLoad($event)"
-          :src="url"
-          frameborder="0"
-        ></iframe>
-      </div>
+    <el-dialog
+      :title="textMap[dialogStatus]"
+      :visible.sync="dialogFormVisible"
+      :close-on-click-modal="true"
+      :destroy-on-close="true"
+      width="80%"
+      @close="closeDialog"
+    >
+      <empolyAgreement
+        :unitInformation="unitInformation"
+        :archivesWhereabouts="archivesWhereabouts"
+        :studentInformation="studentInformation"
+        :controlDatas="controlDatas"
+      ></empolyAgreement>
+      <!-- <employForm></employForm> -->
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -71,35 +77,43 @@
 
 <script>
 import { Message, Loading } from "element-ui";
+import empolyAgreement from "./empolyAgreement";
+import employForm from "./employForm";
 export default {
   props: ["controlDatas"],
+  components: { empolyAgreement, employForm },
   data() {
     return {
-      dialogVisible: false,
-      iframeName: "",
-      url: "http://localhost:8080/common/minstone/form/editForm.do?code=YWBD_WJW_HSZYZSHFYX",
-      isReuse: false, // 是否是复用表单
-      loadingInstance: null,
+      dialogStatus: "update",
+      textMap: {
+        update: "编辑就业信息",
+        create: "增加学生就业信息"
+      },
+      editFlag: true,
+      dialogFormVisible: false,
+      unitInformation: {}, //单位信息
+      archivesWhereabouts: {}, //档案去向
+      studentInformation: {} //毕业生信息
     };
   },
   methods: {
-     // iframe onload
-    iframeLoad(e) {
-      if (this.url) {
-        const height = e.target.contentWindow.document.documentElement.scrollHeight + 50;
-        this.$refs.wrapper.style.height = height + "px";
-      }
-    },
     //全选单选多选
     selsChange: function(sels) {
       this.sels = sels;
     },
     handleEdit(index, row) {
-      this.dialogVisible = true;
+      this.dialogStatus = "update";
+      this.dialogFormVisible = true;
     },
     handleDelete(index, row) {},
     addEmployInf() {},
-    handleClose() {}
+    handleClose() {},
+    closeDialog(){}
   }
 };
 </script>
+<style>
+/* .el-dialog__body{
+  height: 700px;
+} */
+</style>

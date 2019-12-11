@@ -82,7 +82,6 @@ export default {
       ).then(res => {
         if (res.status == "200") {
           this.dataList = res.data.employList;
-          console.log(this.dataList)
           this.pageObj.total = res.data.employList.length;
           this.changePages(20, 1)
         }
