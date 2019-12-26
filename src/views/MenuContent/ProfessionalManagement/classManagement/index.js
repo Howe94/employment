@@ -55,7 +55,6 @@ export default {
     getInformation(type) {
       getclassList({
           type: type
-
         },
         "get"
       ).then(res => {

@@ -29,9 +29,9 @@
         <el-input v-model="unitInform"></el-input>
       </el-form-item>
     </el-form>
-    <el-form ref="archiveInform" :model="form" label-width="80px"></el-form>
+    <!-- <el-form ref="archiveInform" :model="form" label-width="80px"></el-form>
     <el-form ref="stuInform" :model="form" label-width="80px"></el-form>
-    <el-form ref="employInform" :model="form" label-width="80px"></el-form>
+    <el-form ref="employInform" :model="form" label-width="80px"></el-form> -->
   </el-row>
 </template>
 
@@ -41,7 +41,7 @@ export default {
     "controlDatas",
     "studentInformation",
     "archivesWhereabouts",
-    "unitInformation"
+    "unitInform"
   ],
   data() {
     return {};

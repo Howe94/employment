@@ -79,42 +79,42 @@
       @close="closeDialog"
     >
       <el-form
-        :model="editForm"
+        :model="stuInfoForm"
         label-width="120px"
         style="text-align: left; width: 80%;"
         :rules="editFormRules"
-        ref="editForm"
+        ref="stuInfoForm"
       >
         <el-form-item label="学号" prop="stuNo">
-          <el-input v-model="editForm.stuNo" auto-complete="off"></el-input>
+          <el-input v-model="stuInfoForm.stuNo" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="姓名" prop="stuName">
-          <el-input v-model="editForm.stuName" auto-complete="off"></el-input>
+          <el-input v-model="stuInfoForm.stuName" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="性别" prop="sex">
-          <el-radio-group v-model="editForm.sex">
+          <el-radio-group v-model="stuInfoForm.sex">
             <el-radio class="radio" :label="1">男</el-radio>
             <el-radio class="radio" :label="0">女</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="身份证" prop="idCard">
-          <el-input v-model="editForm.idCard"></el-input>
+          <el-input v-model="stuInfoForm.idCard"></el-input>
         </el-form-item>
         <el-form-item label="院系" prop="department">
-          <el-input placeholder="输入你的院系" v-model="editForm.department"></el-input>
+          <el-input placeholder="输入你的院系" v-model="stuInfoForm.department"></el-input>
         </el-form-item>
         <el-form-item label="专业" prop="profession">
-          <el-input placeholder="输入你的专业" v-model="editForm.profession"></el-input>
+          <el-input placeholder="输入你的专业" v-model="stuInfoForm.profession"></el-input>
         </el-form-item>
         <el-form-item label="学历" prop="education">
-          <el-radio-group v-model="editForm.education">
+          <el-radio-group v-model="stuInfoForm.education">
             <el-radio class="radio" :label="0">本科</el-radio>
             <el-radio class="radio" :label="1">硕士</el-radio>
             <el-radio class="radio" :label="2">博士</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="政治面貌" prop="politicalStatus">
-          <el-radio-group v-model="editForm.politicalStatus">
+          <el-radio-group v-model="stuInfoForm.politicalStatus">
             <el-radio class="radio" :label="0">团员</el-radio>
             <el-radio class="radio" :label="1">预备党员</el-radio>
             <el-radio class="radio" :label="2">党员</el-radio>
@@ -124,37 +124,39 @@
         <el-form-item label="生源地" prop="biogenicLand">
           <v-distpicker
             hide-area
-            :province="selectBiogenicLand.province"
-            :city="selectBiogenicLand.city"
+            :placeholders="defaultAddress"
+            :province="formatAddress(stuInfoForm.biogenicLand,0)"
+            :city="formatAddress(stuInfoForm.biogenicLand,1)"
             @selected="onChangeBiogenicLand"
           ></v-distpicker>
-          <el-input v-model="editForm.biogenicLand" style="display:none"></el-input>
+          <el-input v-model="stuInfoForm.biogenicLand" style="display:none"></el-input>
         </el-form-item>
         <el-form-item label="毕业时间" prop="graduationTime">
           <el-date-picker
             type="date"
             placeholder="选择日期"
             format="yyyy-MM-dd"
-            v-model="editForm.graduationTime"
+            v-model="stuInfoForm.graduationTime"
           ></el-date-picker>
         </el-form-item>
         <el-form-item label="个人联系电话" prop="stuTel">
-          <el-input v-model="editForm.stuTel"></el-input>
+          <el-input v-model="stuInfoForm.stuTel"></el-input>
         </el-form-item>
         <el-form-item label="家庭联系人" prop="familyContact">
-          <el-input v-model="editForm.familyContact" auto-complete="off"></el-input>
+          <el-input v-model="stuInfoForm.familyContact" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="家庭电话" prop="homeTel">
-          <el-input v-model="editForm.homeTel"></el-input>
+          <el-input v-model="stuInfoForm.homeTel"></el-input>
         </el-form-item>
         <el-form-item label="家庭住址" prop="homeAddress">
           <v-distpicker
-            :province="selectHomeAddress.province"
-            :city="selectHomeAddress.city"
-            :area="selectHomeAddress.area"
+            :placeholders="defaultAddress"
+            :province="formatAddress(stuInfoForm.homeAddress,0)"
+            :city="formatAddress(stuInfoForm.homeAddress,1)"
+            :area="formatAddress(stuInfoForm.homeAddress,2)"
             @selected="onChangeHomeAddress"
           ></v-distpicker>
-          <el-input v-model="editForm.homeAddress" style="display:none"></el-input>
+          <el-input v-model="stuInfoForm.homeAddress" style="display:none"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -253,15 +255,15 @@ export default {
         ]
       },
       //编辑界面数据
-      editForm: {
+      stuInfoForm: {
         stuNo: "", //学号
         stuName: "", //姓名
         sex: 0, //性别
         idCard: "", //身份证
         department: "", //院系
         profession: "", //专业
-        education: "", //学历
-        politicalStatus: "", //政治面貌
+        education: 0, //学历
+        politicalStatus: 1, //政治面貌
         biogenicLand: "", //生源地
         graduationTime: "", //毕业时间
         stuTel: "", //个人联系电话
@@ -269,8 +271,11 @@ export default {
         homeTel: "", //家庭联系电话
         homeAddress: "" //家庭住址
       },
-      selectBiogenicLand: {},
-      selectHomeAddress: {}
+      defaultAddress:{
+        province: '-- 选择省 --',
+        city: '-- 选择市 --',
+        area: '-- 选择区 --',
+      }
     };
   },
   methods: {
@@ -282,26 +287,22 @@ export default {
     handleEdit(index, row) {
       this.dialogStatus = "update";
       this.dialogFormVisible = true;
-      this.editForm = Object.assign({}, row);
-      var biogenic_landStr = this.editForm.biogenicLand.split(" ");
-      var home_addressStr = this.editForm.homeAddress.split(" ");
-      this.selectBiogenicLand = Object.assign({
-        province: biogenic_landStr[0],
-        city: biogenic_landStr[1]
-      });
-      this.selectHomeAddress = Object.assign({
-        province: home_addressStr[0],
-        city: home_addressStr[1],
-        area: home_addressStr[2]
-      });
+      this.stuInfoForm = Object.assign({}, row);
+      // console.log(this.stuInfoForm.homeAddress)//内蒙古自治区 阿拉善盟 阿拉善右旗
+    },
+    //格式地址信息
+    formatAddress(areaList,areaLeave){
+     var retAddress = areaList.split(" ")[areaLeave]
+     return retAddress;
     },
     //选择生源地信息
     onChangeBiogenicLand(data) {
-      this.editForm.biogenicLand = data.province.value + " " + data.city.value;
+      this.stuInfoForm.biogenicLand = data.province.value;
     },
     //选择家庭地址信息
     onChangeHomeAddress(data) {
-      this.editForm.homeAddress =
+      console.log()
+      this.stuInfoForm.homeAddress =
         data.province.value + " " + data.city.value + " " + data.area.value;
     },
     //删除某个同学的个人信息
@@ -338,7 +339,7 @@ export default {
     },
     //更新某个基本信息
     updateData() {
-      const params = Object.assign({}, this.editForm);
+      const params = Object.assign({}, this.stuInfoForm);
       updateStuInfo({ params }, "POST")
         .then(res => {
           if (res.status == "200") {
@@ -370,9 +371,9 @@ export default {
     },
     // 添加新的基本信息
     addUserInfo() {
-      this.$refs.editForm.validate(valid => {
+      this.$refs.stuInfoForm.validate(valid => {
         if (valid) {
-          const params = Object.assign({}, this.editForm);
+          const params = Object.assign({}, this.stuInfoForm);
           console.log(params);
           addNewStu({ params }, "post").then(res => {
             if (res.status == "200") {
@@ -393,9 +394,7 @@ export default {
       });
     },
     closeDialog() {
-      this.editForm = Object.assign({});
-      this.selectHomeAddress = Object.assign({});
-      this.selectBiogenicLand = Object.assign({});
+      this.$refs["stuInfoForm"].resetFields();//清空填写内容
     }
   }
 };

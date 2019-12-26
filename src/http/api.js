@@ -18,8 +18,9 @@ export const getStuList = params => { return axios.get(`${bashPath}/studentInfor
 export const getEmployList = params => { return axios.get(`${bashPath}/stuEmployInformation`, { params: params }); };
 
 
-//获取专业信息
+//获取专业信息http://localhost:3000/classInformation
 export const getclassList = params => { return axios.get(`${bashPath}/classInformation`, { params: params }); };
+// export const getclassList = params => { `http://localhost:3000/classInformation`, { params: params }; };
 
 //更新某个同学的个人信息
 export const updateStuInfo = params => { return axios.post(`${bashPath}/editStuInfo`,  { params: params.params }); };

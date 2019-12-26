@@ -60,14 +60,17 @@
       width="80%"
       @close="closeDialog"
     >
+      <Step :active="active"/>
       <empolyAgreement
-        :unitInformation="unitInformation"
+        :unitInform="unitInformation"
         :archivesWhereabouts="archivesWhereabouts"
         :studentInformation="studentInformation"
         :controlDatas="controlDatas"
       ></empolyAgreement>
       <!-- <employForm></employForm> -->
       <span slot="footer" class="dialog-footer">
+        <el-button @click="active--">上一步</el-button>
+        <el-button @click="active++">下一步</el-button>
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
       </span>
@@ -79,9 +82,10 @@
 import { Message, Loading } from "element-ui";
 import empolyAgreement from "./empolyAgreement";
 import employForm from "./employForm";
+import Step from "@/components/step.vue"
 export default {
   props: ["controlDatas"],
-  components: { empolyAgreement, employForm },
+  components: { empolyAgreement, employForm, Step },
   data() {
     return {
       dialogStatus: "update",
@@ -93,7 +97,8 @@ export default {
       dialogFormVisible: false,
       unitInformation: {}, //单位信息
       archivesWhereabouts: {}, //档案去向
-      studentInformation: {} //毕业生信息
+      studentInformation: {}, //毕业生信息
+      active:1//步骤条状态
     };
   },
   methods: {
@@ -108,7 +113,7 @@ export default {
     handleDelete(index, row) {},
     addEmployInf() {},
     handleClose() {},
-    closeDialog(){}
+    closeDialog() {}
   }
 };
 </script>

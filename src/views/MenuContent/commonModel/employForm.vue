@@ -1,7 +1,7 @@
 <template>
   <div class="form-wrapper">
     <div class="iframe-wrapper" ref="wrapper">
-      <iframe class="iframe" :src="url" frameborder="0"></iframe>
+      <iframe class="iframe" @load="iframeLoad($event)" :src="url" frameborder="0"></iframe>
     </div>
   </div>
 </template>
@@ -19,6 +19,15 @@ export default {
     };
   },
   methods: {
+    // iframe onload
+    iframeLoad(e) {
+      this.loadingInstance.close();
+      if (this.url) {
+        const height =
+          e.target.contentWindow.document.documentElement.scrollHeight + 50;
+        this.$refs.wrapper.style.height = height + "px";
+      }
+    },
     // 获取表单链接
     getUrl() {
       this.loadingInstance = Loading.service({

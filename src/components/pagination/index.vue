@@ -22,6 +22,7 @@ export default {
   },
   methods: {
     handleSizeChange (val) {
+      
       this.pageObj.page_size = val;
       this.$emit("clickPages", this.pageObj.page_size, this.pageObj.currentPage);
     },
@@ -31,13 +32,8 @@ export default {
     },
 
   },
-  // watch: {
-  //   pageObj(newVal, oldVal) {
-  //     console.log("+++++====++++++++")
-  //     console.log(this.pageObj)
-  //     this.pageObj = newVal;
-  //   }
-  // }
+  created() {
+  }
 }
 </script>
 <style lang="scss" scoped>
