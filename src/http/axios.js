@@ -85,7 +85,7 @@ export default function $axios(options) {
             break;
           case 0:
             store.commit('changeState')
-            // console.log('登录成功')
+            console.log('登录成功')
           default:
         }
         // 若不是正确的返回code，且已经登录，就抛出错误

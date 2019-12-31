@@ -8,13 +8,14 @@ import MessageOfMe from '@/views/MenuContent/messageOfMe'
 import MyRumor from '@/views/MenuContent/myRumor'
 import studentManagement from '@/views/MenuContent/ProfessionalManagement/studentManagement/index.vue'
 import classManagement from '@/views/MenuContent/ProfessionalManagement/classManagement/index.vue'
+import classDetail from '@/views/MenuContent/ProfessionalManagement/classManagement/classModel/classDetail.vue'
 Vue.use(Router)
 
 var router = new Router({
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
-      // name: 'Home',
       component: Home,
       meta: {
         requireAuth: true, // 是否需要登录的
@@ -64,6 +65,15 @@ var router = new Router({
           meta: {
             requireAuth: true, // 是否需要登录的
             title: "班级管理" // 页面标题
+          }
+        },
+        {
+          path: '/classDetail',
+          name: 'classDetail',
+          component: classDetail,
+          meta: {
+            requireAuth: true, // 是否需要登录的
+            title: "班级信息" // 页面标题
           }
         }
       ]

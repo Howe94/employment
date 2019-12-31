@@ -8,6 +8,8 @@ import i18n from './i18n/index'
 import store from './store/index'
 import './assets/icon/iconfont.css'
 import Mock from './mock'
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 Mock.bootstrap();
 Vue.config.productionTip = false
 Vue.use(ElementUI);

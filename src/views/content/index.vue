@@ -95,7 +95,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .main, .main div, aside, section, ul{
-    height:100%;
+    height:85%;
     .aside-box {
       display: inline-block;
       float: left;

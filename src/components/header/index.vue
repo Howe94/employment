@@ -99,7 +99,7 @@ export default {
     console.log(user.username)
     if (user) {
       user = JSON.parse(user);
-      this.userName = user.username || '';
+      this.userName = user.name || '';
       this.userAvatar = user.avatar || '';
     }
   }

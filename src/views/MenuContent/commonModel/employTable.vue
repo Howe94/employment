@@ -45,7 +45,7 @@
           <el-button class="addEmployInfBtn" type="primary" @click="addEmployInf">添加</el-button>
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -62,17 +62,14 @@
     >
       <Step :active="active"/>
       <empolyAgreement
-        :unitInform="unitInformation"
         :archivesWhereabouts="archivesWhereabouts"
         :studentInformation="studentInformation"
         :controlDatas="controlDatas"
       ></empolyAgreement>
-      <!-- <employForm></employForm> -->
       <span slot="footer" class="dialog-footer">
-        <el-button @click="active--">上一步</el-button>
-        <el-button @click="active++">下一步</el-button>
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button v-if="active > 1" @click="changeStep(0)">上一步</el-button>
+        <el-button v-if="active < 4" @click="changeStep(1)">下一步</el-button>
+        <el-button v-if="active == 4" type="primary" @click="dialogVisible = false">确 定</el-button>
       </span>
     </el-dialog>
   </el-row>
@@ -113,7 +110,15 @@ export default {
     handleDelete(index, row) {},
     addEmployInf() {},
     handleClose() {},
-    closeDialog() {}
+    closeDialog() {},
+    // 步骤更新
+    changeStep(val){
+      if (val == 0 && this.active > 1) {
+        this.active--;
+      }else{
+        this.active++;
+      }
+    }
   }
 };
 </script>

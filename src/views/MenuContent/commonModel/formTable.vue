@@ -14,7 +14,6 @@
 				</el-form-item>
 			</el-form>
     </el-col>-->
-
     <!-- 列表页面 -->
     <el-table
       :data="controlDatas"
