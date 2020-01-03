@@ -17,7 +17,7 @@ export default {
         // backgroundColor: "rgba(229, 235, 240, 0.76)",
         //标题
         title: {
-          text: this.$route.query.classNo + "就业分析",
+          // text: this.$route.query.classNo + "就业分析",
           left: "center",
           top: 20,
           textStyle: {

@@ -9,6 +9,8 @@ import store from './store/index'
 import './assets/icon/iconfont.css'
 import Mock from './mock'
 import echarts from 'echarts'
+import tagCloud from 'v-tag-cloud'
+Vue.use(tagCloud)
 Vue.prototype.$echarts = echarts
 Mock.bootstrap();
 Vue.config.productionTip = false
